@@ -73,29 +73,15 @@ ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
 
-select * from dept_emp;
-select * from departments;
-select * from dept_manager;
-select * from employees;
-select * from salaries;
-select * from titles;
 
+-- List all employees in the Sales department, 
+-- including their employee number, last name, first name, and department name.
 
--- List the manager of each department with the following information: department number, 
--- department name, the manager's employee number, last name, first name.
-
-select 
-	dept_manager.dept_no, 
-	departments.dept_name,
-	employees.emp_no,
-	employees.last_name,
-	employees.first_name
-from 
-	dept_manager, 
-	employees,
-	departments
-where 
-	dept_manager.emp_no=employees.emp_no
-and
-	dept_manager.dept_no=departments.dept_no
-
+SELECT employees.emp_no, employees.last_name, employees.first_name, departments.dept_name
+FROM employees
+LEFT JOIN dept_emp
+ON employees.emp_no = dept_emp.emp_no
+LEFT JOIN departments
+ON dept_emp.dept_no = departments.dept_no
+where
+dept_emp.dept_no in ('d007');

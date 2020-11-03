@@ -73,29 +73,13 @@ ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
 
-select * from dept_emp;
-select * from departments;
-select * from dept_manager;
-select * from employees;
-select * from salaries;
-select * from titles;
+
+-- In descending order, list the frequency count of employee last names, 
+-- i.e., how many employees share each last name.
 
 
--- List the manager of each department with the following information: department number, 
--- department name, the manager's employee number, last name, first name.
-
-select 
-	dept_manager.dept_no, 
-	departments.dept_name,
-	employees.emp_no,
-	employees.last_name,
-	employees.first_name
-from 
-	dept_manager, 
-	employees,
-	departments
-where 
-	dept_manager.emp_no=employees.emp_no
-and
-	dept_manager.dept_no=departments.dept_no
+SELECT employees.last_name, COUNT(employees.last_name) AS "l_name count"
+FROM employees
+group by employees.last_name
+ORDER BY "l_name count" DESC;
 

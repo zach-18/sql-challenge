@@ -1,0 +1,16 @@
+
+
+Comments:
+Data Modeling was done 3 times to ensure I had the right 1:many relationships to allow the right tables to be built.
+
+In order to save each analysis, I created a separate file for each analysis:
+sqlchallengepz_query_1.sql was the first of 8 analysis, and so on.
+
+For the bonus, I created a Jupyter notebook, and imported the CSVs.
+(I ran out of time to download the SQL file).
+
+I did create a histogram, but not the bar chart.
+
+and for the epilogue, 
+
+Employee # 499942 = April Foolsday.

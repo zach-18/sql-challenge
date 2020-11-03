@@ -1,10 +1,3 @@
-drop table departments cascade;
-drop table dept_emp cascade;
-drop table dept_manager cascade;
-drop table employees cascade;
-drop table salaries cascade;
-drop table titles cascade;
-
 -- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- Link to schema: https://app.quickdatabasediagrams.com/#/d/ru0hro
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
@@ -72,30 +65,16 @@ REFERENCES "titles" ("title_id");
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
+-- List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 
-select * from dept_emp;
-select * from departments;
-select * from dept_manager;
-select * from employees;
-select * from salaries;
-select * from titles;
-
-
--- List the manager of each department with the following information: department number, 
--- department name, the manager's employee number, last name, first name.
 
 select 
-	dept_manager.dept_no, 
-	departments.dept_name,
-	employees.emp_no,
+	employees.first_name,
 	employees.last_name,
-	employees.first_name
-from 
-	dept_manager, 
-	employees,
-	departments
+	employees.sex
+ from 
+	employees
 where 
-	dept_manager.emp_no=employees.emp_no
+	employees.first_name='Hercules'
 and
-	dept_manager.dept_no=departments.dept_no
-
+	employees.last_name like 'B%';

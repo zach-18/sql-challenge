@@ -63,39 +63,10 @@ REFERENCES "departments" ("dept_no");
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "departments" ("dept_no");
 
-ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
-
 ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title" FOREIGN KEY("emp_title")
 REFERENCES "titles" ("title_id");
 
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
-
-select * from dept_emp;
-select * from departments;
-select * from dept_manager;
-select * from employees;
-select * from salaries;
-select * from titles;
-
-
--- List the manager of each department with the following information: department number, 
--- department name, the manager's employee number, last name, first name.
-
-select 
-	dept_manager.dept_no, 
-	departments.dept_name,
-	employees.emp_no,
-	employees.last_name,
-	employees.first_name
-from 
-	dept_manager, 
-	employees,
-	departments
-where 
-	dept_manager.emp_no=employees.emp_no
-and
-	dept_manager.dept_no=departments.dept_no
 
